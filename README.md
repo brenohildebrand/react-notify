@@ -16,8 +16,8 @@ pretty small and customizable.
 ## Usage
 
 Include the &lt;Notify&gt; component in your app and wrap everything in the
-&lt;NotifyProvider&gt;. Access the notify functions using the &lt;NotifyContext
-&gt;.
+&lt;NotifyProvider&gt;. Access the notify functions using the 
+&lt;NotifyContext&gt;.
 
 <br/>
 
@@ -44,9 +44,9 @@ function Content() {
     useEffect(() => {
         notify({
             type: 'information',
-            message: 'I am a notification message',
+            message: 'Content Component Mounted',
         })
-    })
+    }, [])
 
     return (
         <h1>Lorem ipsum.</h1>
