@@ -44,16 +44,16 @@ const NotifyProvider = ({ children }: NotifyProviderProps) => {
 
     const [notifications, setNotifications] = useState([] as Notification[]);
 
-    const notify = (notification: Notification, delay?: number) => {
+    const notify = (notification: Omit<Notification, "ID">, delay?: number) => {
         
         // Generate ID
         const currentID = Date.now();
-        
-        // Assign ID to current notification
-        notification['ID'] = currentID;
 
         // Include current notification in notifications
-        setNotifications(notifications.concat(notification))
+        setNotifications(notifications.concat({
+            ID: currentID,
+            ...notification,
+        }))
 
         // Remove current notification from notifications after delay || 3000
         setTimeout(() => {
@@ -117,7 +117,7 @@ interface Notification {
 
 interface NotifyContextData {
     notifications: Notification[],
-    notify: (notification: Notification, delay?: number) => void
+    notify: (notification: Omit<Notification, "ID">, delay?: number) => void
 }
 
 interface NotifyProviderProps {
